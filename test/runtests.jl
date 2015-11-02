@@ -2,4 +2,8 @@ using Mandrill
 using Base.Test
 
 # write your own tests here
-@test 1 == 1
+p = Mandrill.users_ping2()
+@test p["PING"] == "PONG!"
+
+p = Mandrill.users_info()
+p["public_id"] == "WBdNPiLFZOoKiEZ-stgZOQ"

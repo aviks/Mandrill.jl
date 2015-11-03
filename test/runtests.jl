@@ -43,7 +43,7 @@ p=Mandrill.messages_send(s)
 @test length(p) == 1
 @test p[1]["status"] == "sent"
 
-s = Dict{String, Any}()
+s = Dict{ASCIIString, Any}()
 message = Dict{ASCIIString, Any}()
 message["html"] = "<p>Example HTML Content</p>"
 message["text"] = "Example text content"
@@ -62,5 +62,5 @@ s["async"] = true
 
 p=Mandrill.messages_send(s)
 @test length(p) == 2
-@test p[1]["status"] = "queued"
-@test p[2]["status"] = "queued"
+@test p[1]["status"] == "queued"
+@test p[2]["status"] == "queued"

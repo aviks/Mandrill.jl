@@ -6,16 +6,19 @@
 [Mailchimp](https://mailchimp.com). This package is a low overhead, lightweight wrapper around
 Mandrill's REST api.
 
-[Mandrill's REST API](https://mandrillapp.com/api/docs/) uses JSON request and response messages to send emails, setup templates, or query reports. To use this package, create the input message as a Julia Dictionary, using the schema in the [Mandrill API Documentation](https://mandrillapp.com/api/docs/). Then, call the corresponding method. The API call results are returned as Julia Dictionaries. Any errors from the API call result in a Julia `ErrorException` being thrown. This will exit the process if not caught. 
+[Mandrill's REST API](https://mandrillapp.com/api/docs/) uses JSON messages to send emails, setup templates, or query reports. To use this package, create the input message as a Julia Dictionary, using the schema in the [Mandrill API Documentation](https://mandrillapp.com/api/docs/). Then, call the corresponding julia method. The call results are returned as JSON documents from Mandrill, which are converted Julia Dictionaries.
 
-Each API endpoint corresponds to a single method. Mandrill API endpoints are structured as `group/name.ext`. This is mapped as a `Mandrill.group_name` method in Julia. For example, the endpoint `/user/info.json` is mapped to the method `Mandril.user_info()`. These methods usually take a Julia Dictionary as their only arguments. For endpoints that do not need any inputs (other than the authentication key,) the method can be called without arguments`
+Any errors from the API call will result in a Julia `ErrorException` being thrown. This will exit the process if not caught.
+
+Each API endpoint corresponds to a single method. Mandrill API endpoints are structured as `group/name.ext`. This is mapped as a `Mandrill.group_name` method in Julia. For example, the endpoint `/user/info.json` is mapped to the method `Mandril.user_info()`. These methods typically take a Julia Dictionary as their only arguments. For endpoints that do not need any inputs (other than the authentication key,) the method can be called without arguments.
 
 The Mandrill authentication key can be provided via a SHELL environment variable `MANDRILL_KEY` (which must be set before the package is loaded) or explicitly set via the `Mandrill.key(key_string)` method call. The key need not be provided again for each method call.
 
+Note that email attachments are sent as `base64` encoded strings in the Mandrill JSON API. Julia base library includes a `base64encode` method that can be used for this purpose.
+
 ##Installation
 ```julia
-Pkg.add("Requests")
-Pkg.clone("https://github.com/aviks/Mandrill.jl.git")
+Pkg.add("Mandrill")
 ```
 
 ##Example Usage

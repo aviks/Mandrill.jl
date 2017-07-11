@@ -1,3 +1,5 @@
+_I do not use Mandrill any more, after they changed their subscription models. Therefore, this package is currently unmaintained. I'll be happy to take PR's if anyone is interested._
+
 # A Julia package for the Mandrill REST API
 
 [![Build Status](https://travis-ci.org/aviks/Mandrill.jl.svg?branch=master)](https://travis-ci.org/aviks/Mandrill.jl)
@@ -16,12 +18,12 @@ The Mandrill authentication key can be provided via a SHELL environment variable
 
 Note that email attachments are sent as `base64` encoded strings in the Mandrill JSON API. Julia base library includes a `base64encode` method that can be used for this purpose.
 
-##Installation
+## Installation
 ```julia
 Pkg.add("Mandrill")
 ```
 
-##Example Usage
+## Example Usage
 ```julia
 using Mandrill
 Mandrill.key("axfGadhf4E....")
